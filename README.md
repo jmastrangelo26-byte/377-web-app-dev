@@ -8,3 +8,5 @@ This project includes the following languages:
 - SVG
 - SQL
 - Python
+
+Copyright 2025
