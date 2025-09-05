@@ -3,3 +3,18 @@
     margin-left:50px;   
     margin-right:50px;
 }
+
+body {
+    background-color:rgb(239, 194, 70);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.button{
+    font-weight: bold;
+    color: white;
+    background-color: rgb(45, 51, 124);
+    padding: 10px;
+    text-decoration: none;
+    
+}
