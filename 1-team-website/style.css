@@ -10,11 +10,91 @@ body {
     background-position: center;
 }
 
-.button{
-    font-weight: bold;
-    color: white;
-    background-color: rgb(45, 51, 124);
-    padding: 10px;
-    text-decoration: none;
-    
+.button:active{
+    transform: translateY(3px); 
+    box-shadow: 0px 2px 0px #0056b3;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed; /* Set the navbar to fixed position */
+  text-align: center ;/* Position the navbar at the top of the page */
+  background-color: rgb(45, 51, 124);
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+.main {
+  margin-top: 30px; /* Add a top margin to avoid content overlay */
+}
+
+ul {list-style-type: none;}
+
+/* Month header */
+.month {
+  padding: 20px 10px;
+  background: #333;
+  text-align: center;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 100px
+}
+
+/* Month list */
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color:#ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
 }
