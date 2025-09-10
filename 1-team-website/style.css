@@ -2,12 +2,40 @@
     text-align:center;
     margin-left:50px;   
     margin-right:50px;
+    margin: 1px;
+    font-family: UWR Chancery L;
+    color: rgb(45, 51, 124);
+    font-size: 48px;
 }
 
 body {
+    margin: 0px;
     background-color:rgb(239, 194, 70);
-    background-repeat: no-repeat;
-    background-position: center;
+}
+
+header {
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.paragraph{
+  text-align: center;
+  font-family: cursive;
+  font-size: 32;
+}
+
+.header h1 {
+  margin: 0 20px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.image{
+  height: 120px;
+  width: auto;
+  margin-left: 100px;
+  display: flex;
 }
 
 .button:active{
@@ -21,12 +49,12 @@ body {
   position: fixed; /* Set the navbar to fixed position */
   text-align: center ;/* Position the navbar at the top of the page */
   background-color: rgb(45, 51, 124);
+  width: 100%;
 }
 
 /* Links inside the navbar */
 .navbar a {
-  float: right;
-  display: block;
+  display: inline-block;
   color: #f2f2f2;
   padding: 12px 16px;
   text-decoration: none;
@@ -62,9 +90,11 @@ ul {list-style-type: none;}
 }
 
 /* Weekdays (Mon-Sun) */
-.weekdays {
-  margin: 0;
+.weekdays{
+  margin-left: 200px;
+  margin-right: 200px;
   padding: 10px 0;
+  margin-top: 0px;
   background-color:#ddd;
 }
 
@@ -79,7 +109,8 @@ ul {list-style-type: none;}
 .days {
   padding: 10px 0;
   background: #eee;
-  margin: 0;
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
 .days li {
@@ -87,14 +118,7 @@ ul {list-style-type: none;}
   display: inline-block;
   width: 13.6%;
   text-align: center;
-  margin-bottom: 5px;
-  font-size:12px;
+  font-size:20px;
   color: #777;
-}
-
-/* Highlight the "current" day */
-.days li .active {
-  padding: 5px;
-  background: #1abc9c;
-  color: white !important
+  height: 65px;
 }
