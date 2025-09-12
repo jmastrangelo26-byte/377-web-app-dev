@@ -6,6 +6,7 @@
     font-family: UWR Chancery L;
     color: rgb(45, 51, 124);
     font-size: 48px;
+    -webkit-text-stroke: 1px black; 
 }
 
 body {
@@ -19,10 +20,38 @@ header {
   padding: 10px 0;
 }
 
-.paragraph{
+.p{
+  margin-top: 50px;
   text-align: center;
   font-family: cursive;
-  font-size: 32;
+  font-size: 25px;
+  color: white;
+}
+
+.roster-container {
+    justify-content: space-between;
+    margin: 0 100px; /* optional padding on sides */
+    display: flex;
+}
+
+.heading {
+    font-size: 25px;
+    font-family: cursive;
+    color: white;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+
+.roster-container li {
+  color: rgb(45, 51, 124);
+  font-size: 25px;
+  width: auto;
+}
+
+.leaders{
+  text-align: center;
+  width: 30%;
+
 }
 
 .header h1 {
@@ -31,16 +60,37 @@ header {
   font-weight: bold;
 }
 
-.image{
+.logo{
   height: 120px;
   width: auto;
   margin-left: 100px;
-  display: flex;
+  display: fixed;
+}
+
+.image{
+  justify-content: center;
+  margin: auto;
+  border: 2px solid black;
+  width: auto;
+  height: 300px
+}
+
+.media{
+  margin-left: 50px;
+  margin-right:50px;
+  align-items: center;
+  margin-top: 70px;
+  border: 2px solid black;
+  width: 26%;
+  height: 300px
 }
 
 .button:active{
     transform: translateY(3px); 
     box-shadow: 0px 2px 0px #0056b3;
+}
+.link{
+  text-decoration: none;
 }
 
 .navbar {
@@ -52,6 +102,11 @@ header {
   width: 100%;
 }
 
+/* .anchor-content{
+  position: fixed;
+  height: 200px;
+
+} */
 /* Links inside the navbar */
 .navbar a {
   display: inline-block;
@@ -121,4 +176,30 @@ ul {list-style-type: none;}
   font-size:20px;
   color: #777;
   height: 65px;
+}
+
+.fa-instagram{
+  font-size: 50px;
+  color: black;
+
+}
+
+.fa-facebook{
+  font-size: 50px;
+  color: black;
+
+}
+
+.fa-youtube{
+  font-size: 50px;
+  color: black;
+
+}
+
+.icons{
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
