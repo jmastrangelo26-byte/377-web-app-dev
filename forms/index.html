@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form Examples</title>
+    <script>
+        function doSubmit() {
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            // alert('Thank you, ' + firstName + '!');
+            
+            document.getElementById('output').innerHTML += firstName + ' ' + lastName + ' <span style="color:red"> has </span> just submitted the form.<br />';
+        }
+
+        function login(){
+            let username = document.getElementById('username').value;
+            let password = document.forms[0].elements['password'].value;
+
+            alert('Access denied for user ' + username + ' and password ' + password);
+        }
+
+        function register(){
+            var username = document.forms[2].elements['agreement'].value;
+            if (username == ''){
+                alert('Username is required');
+            }else{
+                alert('Sucess');
+            }
+
+            var terms = document.form[2].elements['agreement'].checked;
+            if (!terms){
+                alert('You must agree to the terms of service');
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <h1>HTML Form Examples</h1>
+    <form>
+        <h2>Login Form</h2>
+
+        Username: <input name="username" id="username" placeholder="Enter your username" /><br/>
+        Password: <input name="password" type="password" id="password" placeholder="Enter your password" /><br/>
+        <input value="login" type="button" onclick="login()"/>
+    </form>
+
+    <form>
+        <h2>Student Handbook Ackknowledgment</h2>
+
+        First Name: <input type="text" id="firstName" /><br/>
+        Last Name: <input type="text" id="lastName" /><br/>
+        School: 
+        <select>
+            <option>Hanover High School</option>
+            <option>Hanover Middle School</option>
+            <option>Cedar School</option>
+            <option>Center School</option>
+        </select><br/>
+        I agree to handbook policies <input type="checkbox" /><br />
+        <input type="button" value="I Agree" onclick="doSubmit()" />
+    </form>
+    <div id="output"></div>
+
+    <form>
+        <h2>User Registration Form</h2>
+
+        First name: <input name="firstname" type="text" placeholder="First Name"></br>
+        Last name: <input name="lastname" type="text" placeholder="Last Name"></br>        
+        Username: <input name="username" type="text" placeholder="Enter your username"></br>
+
+        I am a...<br/>
+        <input id="student" name="usertype" type="radio" value="Student">
+        <label for="student">Student</label>
+        <br/>
+        <input id="teacher" name="usertype" type="radio" valu="Teacher">
+        <label for="teacher">Teacher</label>
+        <br>
+        
+        Select your school:<br/>
+        <select>
+            <option selected hidden="true">[SELECT SOMETHING]</option>
+            <option>Hanover High School</option>
+            <option>Hanover Middle School</option>
+            <option>Cedar School</option>
+            <option>Center School</option>
+
+        </select>
+
+        Age: <input name="age" type="number" placeholder="Your Age" min="1" max="100"><br/>
+        <br/>
+        DOB: <input name="dob" type="date" placeholder="Your date of birth">
+        <br>
+        <input id="agreement" name="agreement" type="checkbox">
+        <label for="agreement">I agree to the terms of service...</label>
+        <br>
+
+        <input value="Create Account" type="button" onclick="register()">
+    </form>
+</body>
+</html>

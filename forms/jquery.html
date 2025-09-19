@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+
+        function calculateCelsius(fahrenheit) {
+            let celsius = (fahrenheit - 32) * 5 / 9;
+            
+            $('#celsius').val(celsius);
+        }
+
+
+        function calculateFahrenheit(celsius) {
+            let fahrenheit = (celsius + 32) * 9 / 5;
+            
+            $('#celsius').val(celsius);
+        }
+        
+        function toggleInputs(){
+            if ($('.text-input').prop('disabled')){
+                $('.text-input').prop('disabled', false).prop('placeholder', 'RE-ENABLED');  ;     
+            }else{
+                $('.text-input').prop('disabled', true).prop('placeholder', 'DISABLED');  
+            }
+        }
+
+        function updateDateTime(){
+            // Old school 
+            // document.getElementById('dateTime').innerHTML = new Date();
+            
+            // jQuery method
+            $('#dateTime').html(new Date());
+        }
+        
+    </script>
+    <title>jQuery Examples</title>
+</head>
+<body>
+    <h1>jQuery Examples</h1>
+
+    <input type="button" value="Click to Display Current Date and Time" onclick="updateDateTime()" />
+    <div id="dateTime"></div>
+
+    <input type="text" class="text-input" placeholder="Field 1" /><br/>
+    <input type="text" class="text-input" placeholder="Field 2" /><br/>
+    <input type="text" class="text-input" placeholder="Field 3" /><br/>
+    <input type="button" value="Toggle Input Fields" onclick="toggleInputs()" />
+     
+    <h2>Temperature Converter</h2>
+
+    <p class="instructions">
+        Use the input field below to convert temperatures between Celsius and Fahrenheit.
+    </p>
+
+    <input type="text" id="celsius" placeholder="Enter a value" onchange="calculateFahrenheit(this.value)" /> &#176;C
+    <br/>
+    <input type="text" id="fahrenheit" placeholder="Enter a value" onchange="calculateCelsius(this.value)" /> &#176;F
+
+</body>
+</html>
