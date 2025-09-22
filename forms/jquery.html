@@ -12,11 +12,10 @@
             $('#celsius').val(celsius);
         }
 
-
         function calculateFahrenheit(celsius) {
-            let fahrenheit = (celsius + 32) * 9 / 5;
+            let fahrenheit = celsius * 9 / 5 + 32;
             
-            $('#celsius').val(celsius);
+            $('#fahrenheit').val(fahrenheit);
         }
         
         function toggleInputs(){
@@ -41,6 +40,10 @@
 <body>
     <h1>jQuery Examples</h1>
 
+    <p class="instructions">
+        Here we will explore more jQuery elements.
+    </p><hr/>
+
     <input type="button" value="Click to Display Current Date and Time" onclick="updateDateTime()" />
     <div id="dateTime"></div>
 
@@ -53,11 +56,19 @@
 
     <p class="instructions">
         Use the input field below to convert temperatures between Celsius and Fahrenheit.
-    </p>
+    </p><hr/>
 
     <input type="text" id="celsius" placeholder="Enter a value" onchange="calculateFahrenheit(this.value)" /> &#176;C
     <br/>
     <input type="text" id="fahrenheit" placeholder="Enter a value" onchange="calculateCelsius(this.value)" /> &#176;F
+
+    <p class="instructions">
+        Use these buttons to hide and show instructions.
+    </p><hr/>
+
+    <button type="button" onclick="$('p').hide()">Hide Paragraphs</button>
+    <button type="button" onclick="$('p').show()">Show Paragraphs</button>
+
 
 </body>
 </html>

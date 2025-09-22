@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <title>Formulas</title>
+    <script>
+
+        function calcDimensions(length, width){
+            let area = (length * width)
+            let perimeter = (2 * width + 2 * length)
+
+            alert(area)
+            alert(perimeter)
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Rectangle Formulas</h1>
+
+    <h2>
+        Here we will explore more jQuery elements.
+    </h2><hr/>
+
+    <input type="text" id="length" placeholder="Enter length" /><br/>
+    <input type="text"  id="width" placeholder="Enter width" /><br/>
+    <button type="button" value="Calculate" onclick="calcDimensions($('#length').val(), $('#width').val())">Calculate</button>
+
+</body>
+</html>
