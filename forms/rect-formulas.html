@@ -6,15 +6,17 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <title>Formulas</title>
     <script>
-
         function calcDimensions(length, width){
-            let area = (length * width)
-            let perimeter = (2 * width + 2 * length)
+            let area = (length * width);
+            let perimeter = (2 * width + 2 * length);
 
-            alert(area)
-            alert(perimeter)
+            console.log(area);
+            console.log(perimeter);
+
+            $('#showResults1').html(area); 
+            $('#showResults2').html(perimeter);      
+     
         }
-
     </script>
 </head>
 <body>
@@ -28,5 +30,7 @@
     <input type="text"  id="width" placeholder="Enter width" /><br/>
     <button type="button" value="Calculate" onclick="calcDimensions($('#length').val(), $('#width').val())">Calculate</button>
 
+    <div id="showResults1"></div>
+    <div id="showResults2"></div>
 </body>
 </html>
