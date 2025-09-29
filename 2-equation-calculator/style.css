@@ -1,0 +1,47 @@
+
+/* General styling for the body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(220, 220, 242);
+}
+
+/* Styles the active part of the website where the calculations are performed */
+.calculator > div {
+    border: solid #7e7d7d 1px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: white;
+}
+
+/* Contains all of the elements inside of the body*/
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Stylizes the names of each shape being calculated upon */
+.header {
+    font-size: 25px;
+
+}
+
+/* This section uses specific styling to style each of the input fields of the website */
+input[type="text"] {
+    height: 20px;
+}
+input[type="button"] {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.input-label {
+    margin-top:10px; 
+    display: inline-block;
+    width: 150px;
+}
+
+.first-result {
+    margin-top: 20px;
+}
