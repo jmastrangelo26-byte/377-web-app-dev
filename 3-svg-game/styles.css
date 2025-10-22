@@ -1,0 +1,35 @@
+body{
+    background-color: antiquewhite;
+}
+
+#background{
+   fill: white;
+}
+
+#timerDisplay{
+    font-size: 20px;
+    color: red; 
+    text-align: center;
+}
+
+#popup-overlay {
+    visibility: hidden; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+#instruction-popup {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

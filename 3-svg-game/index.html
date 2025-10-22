@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Document</title>
+</head>
+<body>
+    <div id="popup-overlay">
+        <div id="instructionPopup">
+            <h2>Game Instructions</h2>
+            <p>Welcome to the game! Here's how to play:</p>
+            <ul>
+                <li>Use the left and right arrow keys to move</li>
+                <li>Avoid all of the asteroids falling</li>
+                <li>If you hit an asteroid, you DIE!</li>
+            </ul>
+            <button id="closePopupBtn">Got It!</button>
+        </div>
+    </div>
+
+    <h1>AFOG!</h1>
+    <h3>(avoid the falling object game)</h3>
+    <svg width="500" height="700">
+        <rect id="background" x="0" y="0" width="500" height="700" />
+        <image style="background-repeat: tile" id="background-image" width="500" height="700" href="background.jpeg" />
+        <g>
+            <image id="rocketship" x="200" y ="550" height="150" width="75" href="rocketship.png" />
+        </g>
+
+        
+        <image id="asteroid0" x="0" y ="-100" height="50" width="50" href="asteroid.svg" />
+        <image id="asteroid1" x="50" y ="-100" height="50" width="50" href="asteroid.svg" />
+        <image id="asteroid2" x="100" y="-100" width="50" height="50" href="asteroid.svg" />
+        <image id="asteroid3" x="200" y="-100" width="50" height="50" href="asteroid.svg" />
+
+    </svg>
+    
+    <button onclick="animateObjects()">Start the Game!</button>
+    <div id="timerDisplay">00:00:00</div>
+</body>
+</html>

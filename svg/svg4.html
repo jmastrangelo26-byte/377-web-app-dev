@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SVG Lesson 4</h1>
+
+    <svg width="500" height="500" style="border: solid 1px black;">
+
+    <g id="face">
+        <circle cx="100"
+        cy="100"
+        r="50"
+        stroke="black"
+        stroke-width="2"
+        fill="yellow" />
+        
+        <circle cx="85" cy="85" r="7" />
+        <circle cx="115" cy="85" r="7" />
+        
+        <rect x="75" y="110" width="50" height="10" />
+    </g>
+
+    <use href="#face" transform="translate(50,50)" fill="red" />
+    <use href="#face" transform="translate(100,100)" fill="blue" />
+    <use href="#face" transform="translate(150,150)" fill="green" />
+
+    <use href="#face" transform="translate(0,200) scale(0.75)" fill="orange" />
+    <use href="#face" transform="translate(0,250) scale(0.50)" fill="purple" />
+    <use href="#face" transform="translate(0,300) scale(0.25)" fill="brown" />
+
+    </svg>
+</body>
+</html>

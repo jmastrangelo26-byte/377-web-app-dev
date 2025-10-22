@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SVG Lesson 3</h1>
+
+    <svg width="500" height="500" style="border: solid 1px black;">
+        <rect width="50" height="50" />
+
+        <!-- Translate -->
+        <rect width="50" height="50" transform="translate(60)" fill="red" />
+        <rect width="50" height="50" transform="translate(0,60)" fill="green" />
+        <rect width="50" height="50" transform="translate(60,60)" fill="blue" />
+
+        <!-- Scales -->
+        <rect width="50" height="50" transform="translate(200 200) scale(0.5 3)" fill="orange" />
+        <rect width="50" height="50" transform="translate(200 100) scale(3 0.5)" fill="rebeccapurple" />
+
+        <!-- Rotate -->
+        <rect width="50" height="50" x="0" y="300" />
+        <rect width="50" height="50" x="0" y="300" fill="pink" transform="rotate(-45)" />
+        <rect width="50" height="50" x="0" y="300" fill="purple" transform="rotate(-45 25,325)" />
+
+        <!-- Skew -->
+        <rect width="50" height="50" x="300" y="100" fill="magenta" />
+        <rect width="50" height="50" x="300" y="100" fill="grey" transform="skewX(30)" />
+        <rect width="50" height="50" x="300" y="100" fill="grey" transform="skewY(30)" />
+
+    </svg>
+
+</body>
+</html>
