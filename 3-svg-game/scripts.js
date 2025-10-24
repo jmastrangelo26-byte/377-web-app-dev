@@ -11,7 +11,7 @@ let SHIP_CURRENT_X;
 let TIMER_INTERVAL = 1000;
 
 // Runs as soon as the website loads and pulls up the instructions overlay
-const popupOverlay = $("#popupOverlay");
+const popupOverlay = $("#popup-overlay");
 const closePopupBtn = $("#closePopupBtn");
 
 $(function() { //Shorthand that allows a function to be run as soon as page loads
@@ -79,12 +79,13 @@ function moveObjects(){
         // If collision is detected, the game over screen and restart button is presented 
         // the timer is cleared, and the animation is halted 
         if (calculateOverlap(asteroid)){
-            clearInterval(timerInterval);
+            clearInterval(timer);
+            clearInterval(ANIMATION_INTERVAL);
+
             $("#game_over").html("DEAD");
             $("#game_over").css("visibility", "visible");
             $("#restart_button").css("visibility", "visible");
             
-            clearInterval(ANIMATION_INTERVAL);
         }
         
         // Update asteroidsX,Y with coordinates for this asteroid
@@ -150,7 +151,7 @@ function restartGame() {
 
 // Starts and updates the timer which acts as the "score" for this game
 function startTimer(){
-    timerInterval = setInterval(updateTimer, TIMER_INTERVAL);
+    timer = setInterval(updateTimer, TIMER_INTERVAL);
 }
 
 function updateTimer() {
