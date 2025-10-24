@@ -6,40 +6,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <title>Document</title>
+    <title>ASTEROIDS!</title>
 </head>
 <body>
+
+    <!-- Sets the instructions which appear on the popup -->
     <div id="popup-overlay">
-        <div id="instructionPopup">
-            <h2>Game Instructions</h2>
-            <p>Welcome to the game! Here's how to play:</p>
+        <div id="instruction-popup">
+            <h2><span style="color: yellow">ASTEROIDS!</span> Instructions</h2>
+            <p>Welcome to <span style="color: yellow">ASTEROIDS!</span>Here's how to play:</p>
             <ul>
                 <li>Use the left and right arrow keys to move</li>
                 <li>Avoid all of the asteroids falling</li>
-                <li>If you hit an asteroid, you DIE!</li>
+                <li>If you hit an asteroid, you <span style="color: red">DIE!</span></li>
             </ul>
-            <button id="closePopupBtn">Got It!</button>
+            <button onclick="hideInstructions()">Start Game!</button>
         </div>
     </div>
 
-    <h1>AFOG!</h1>
-    <h3>(avoid the falling object game)</h3>
-    <svg width="500" height="700">
-        <rect id="background" x="0" y="0" width="500" height="700" />
-        <image style="background-repeat: tile" id="background-image" width="500" height="700" href="background.jpeg" />
-        <g>
-            <image id="rocketship" x="200" y ="550" height="150" width="75" href="rocketship.png" />
-        </g>
+    <div id="restart_button">
+        <button onclick="restartGame()">New Game!</button>
+    </div>
 
-        
-        <image id="asteroid0" x="0" y ="-100" height="50" width="50" href="asteroid.svg" />
-        <image id="asteroid1" x="50" y ="-100" height="50" width="50" href="asteroid.svg" />
-        <image id="asteroid2" x="100" y="-100" width="50" height="50" href="asteroid.svg" />
-        <image id="asteroid3" x="200" y="-100" width="50" height="50" href="asteroid.svg" />
-
-    </svg>
-    
-    <button onclick="animateObjects()">Start the Game!</button>
+    <!-- Puts the timer on the screen along side the header -->
+    <h1 class="header">ASTEROIDS!</h1>
     <div id="timerDisplay">00:00:00</div>
+
+    <!-- Creates the SVG content and puts in a canvas where the user interacts -->
+    <div class="container">
+        <svg width="500" height="700">
+            <rect id="background" x="0" y="0" width="500" height="700" />
+            <image id="background" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" href="photos_and_SVGS/background.jpeg" />
+            <g>
+                <!-- SVG Source: FreePik; URL: https://www.freepik.com/free-vector/sticker-template-with-rocket-ship-isolated_21197175.htm#fromView=keyword&page=1&position=5&uuid=34992ffe-4ebd-4592-b5a3-5790057597dc&query=Rocket+svg -->
+                <image id="rocketship" x="200" y ="550" height="150" width="75" href="photos_and_SVGS/rocketship.png" />
+            </g>
+            
+            <!-- Asteroid SVG Source: SVG Repo; URL: https://www.svgrepo.com/svg/528010/asteroid -->
+            <image id="asteroid0" x="10" y ="-100" height="50" width="50" href="photos_and_SVGS/asteroid.svg" />
+            <image id="asteroid1" x="50" y ="-100" height="50" width="50" href="photos_and_SVGS/asteroid.svg" />
+            <image id="asteroid2" x="100" y="-100" width="50" height="50" href="photos_and_SVGS/asteroid.svg" />
+            <image id="asteroid3" x="200" y="-100" width="50" height="50" href="photos_and_SVGS/asteroid.svg" /> 
+            <image id="asteroid4" x="330" y="-100" width="50" height="50" href="photos_and_SVGS/asteroid.svg" /> 
+            
+            <text id="game_over" x="150" y="350" font-family="Press Start 2P" font-size="50" fill="red">DEAD</text>
+        </svg>
+    </div>
+
+
 </body>
 </html>
