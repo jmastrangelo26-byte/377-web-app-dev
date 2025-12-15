@@ -1,28 +1,22 @@
-file = open("AoC 2025/day1.snippet", "r")
+file = open("AoC 2025/day1.dat", "r")
 lines = file.readlines()
 
-num_zeros = 0
-starting_rotation = 50
+num_crossings = 0
+position = 50
 
 for line in lines:
     line = line.strip()
-    direction = line[0:1]
-    distance  = int(line[1:])
-    new_rotation = 0
+    direction = line[0]
+    distance = int(line[1:])
 
-    if direction == 'R':
-        distance *= -1
+    if direction == 'L':
+        step = -1
+    else:
+        step = 1
 
-    new_rotation = (starting_rotation + distance) % 100
-    
-    num_zeros += abs((distance + starting_rotation) // 100)
+    for i in range(distance):
+        position = (position + step) % 100
+        if position == 0:
+            num_crossings += 1
 
-    if new_rotation == 0:
-        num_zeros += 1
-
-    starting_rotation = new_rotation
-
-    print("New Step")
-    print("Starting rotation: " + str(starting_rotation) + "\nNew Roation: " + str(new_rotation) + "\nDistance: " + str(distance))
-    print(" ")
-print("Num Zeros: " + str(num_zeros))
+print('Total crossings: ' + str(num_crossings))
