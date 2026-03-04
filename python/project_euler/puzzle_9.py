@@ -12,5 +12,4 @@ for a in range(1, 1001):
         
 
 print(final_a, final_b, final_c)
-
 print(final_a * final_b * final_c)

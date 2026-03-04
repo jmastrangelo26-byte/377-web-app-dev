@@ -1,5 +1,4 @@
 number = 1
-
 inner_count = 0
 
 while True:
