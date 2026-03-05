@@ -12,7 +12,7 @@ $connection = get_connection();
 
 $delete =<<<SQL
 DELETE FROM member_data
-WHERE mov_id = '$idmember_data'
+WHERE idmember_data = '$id'
 SQL;
 
 $connection->query($delete);

@@ -19,6 +19,7 @@ include("library.php");
 
     <div class="mb-3">
             <a href="index.php?content=detail" class="btn btn-primary" role="button">Add a Record</a>
+            <a href="index.php?content=club_details" class="btn btn-secondary" role="button">Edit Club Details</a>
     </div>
 
     <body>
