@@ -18,6 +18,8 @@ $mem_points_scored = "";
 $mem_points_percentage = "";
 $mem_hours_support = "";
 
+include_once("library.php"); // include_once makes sure that the connection is not redeclared multiple times
+$connection = get_connection();
 
 if (isset($id)){
     $sql =<<<SQL
@@ -25,8 +27,6 @@ if (isset($id)){
     FROM member_data
     WHERE idmember_data = $id
     SQL;
-
-    $connection = get_connection();
 
     // Run the query on the database
     $result = $connection->query($sql);
@@ -48,7 +48,12 @@ if (isset($id)){
     $mem_points_percentage = $row['mem_points_percentage'];
     $mem_hours_support = $row['mem_hours_support'];
 }
+else
+{
+    $id = "";
+}
 
+include("calculate.php");
 
 ?>
 
@@ -61,59 +66,63 @@ if (isset($id)){
 
     <div class="mb-3">
         <label for="mem_name" class="form-label">Member's Name</label>
-        <input type="text" class="form-control" name="mem_name" value="<?php echo $mem_name; ?>">
+        <input id="mem_name" type="text" class="form-control" name="mem_name" value="<?php echo $mem_name; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_status" class="form-label">Member's Status</label>
-        <input type="text" class="form-control" name="mem_status" value="<?php echo $mem_status; ?>">
+        <!-- Looked up a select tag to figure out how to implement a dropdown -->
+        <select id="mem_status" class="form-control" name="mem_status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Alumni">Alumni</option>
+            <option value="Pending">Pending</option>
+        </select>
     </div>
 
     <div class="mb-3">
         <label for="mem_meeting_attendance" class="form-label">Meeting Attendance</label>
-        <input type="text" class="form-control" name="mem_meeting_attendance" value="<?php echo $mem_meeting_attendance; ?>">
+        <input id="mem_meeting_attendance" type="number" min="0" step="1" class="form-control" name="mem_meeting_attendance" value="<?php echo $mem_meeting_attendance; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_meeting_percentage" class="form-label">Meeting Attendance Percentage</label>
-        <input type="text" class="form-control" name="mem_meeting_percentage" value="<?php echo $mem_meeting_percentage; ?>">
+        <input id="mem_meeting_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_meeting_percentage" value="<?php echo $mem_meeting_percentage; ?>" readonly>
     </div>
-
 
     <div class="mb-3">
         <label for="mem_game_attendance" class="form-label">Game Nights Attended</label>
-        <input type="text" class="form-control" name="mem_game_attendance" value="<?php echo $mem_game_attendance; ?>">
+        <input id="mem_game_attendance" type="number" min="0" step="1" class="form-control" name="mem_game_attendance" value="<?php echo $mem_game_attendance; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_game_percentage" class="form-label">Game Nights Percentage</label>
-        <input type="text" class="form-control" name="mem_game_percentage" value="<?php echo $mem_game_percentage; ?>">
+        <input id="mem_game_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_game_percentage" value="<?php echo $mem_game_percentage; ?>" readonly>
     </div>
-
 
     <div class="mb-3">
         <label for="mem_comp_attendance" class="form-label">Competition Attendance</label>
-        <input type="text" class="form-control" name="mem_comp_attendance" value="<?php echo $mem_comp_attendance; ?>">
+        <input id="mem_comp_attendance" type="number" min="0" step="1" class="form-control" name="mem_comp_attendance" value="<?php echo $mem_comp_attendance; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_comp_percentage" class="form-label">Competition Attendance Percentage</label>
-        <input type="text" class="form-control" name="mem_comp_percentage" value="<?php echo $mem_comp_percentage; ?>">
+        <input id="mem_comp_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_comp_percentage" value="<?php echo $mem_comp_percentage; ?>" readonly>
     </div>
 
     <div class="mb-3">
         <label for="mem_points_scored" class="form-label">Points Scored</label>
-        <input type="text" class="form-control" name="mem_points_scored" value="<?php echo $mem_points_scored; ?>">
+        <input id="mem_points_scored" type="number" min="0" step="1" class="form-control" name="mem_points_scored" value="<?php echo $mem_points_scored; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_points_percentage" class="form-label">Competition Accuracy</label>
-        <input type="text" class="form-control" name="mem_points_percentage" value="<?php echo $mem_points_percentage; ?>">
+        <input id="mem_points_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_points_percentage" value="<?php echo $mem_points_percentage; ?>" readonly>
     </div>
 
     <div class="mb-3">
         <label for="mem_hours_support" class="form-label">Member Hour Support</label>
-        <input type="text" class="form-control" name="mem_hours_support" value="<?php echo $mem_hours_support; ?>">
+        <input id="mem_hours_support" type="number" min="0" step="0.1" class="form-control" name="mem_hours_support" value="<?php echo $mem_hours_support; ?>">
     </div>
 
 
@@ -122,3 +131,7 @@ if (isset($id)){
     <a href="delete.php?id=<?php echo $id; ?>" class="btn btn-danger" role="button">Delete</a>
     <a href="index.php?content=list" class="btn btn-secondary" role="button">Cancel</a>
 </form>
+
+<?php
+$connection->close();
+?>

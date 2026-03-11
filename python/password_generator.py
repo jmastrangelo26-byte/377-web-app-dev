@@ -1,13 +1,23 @@
 import random 
 from sys import argv 
 
-script, l, p = argv 
+if len(argv) == 3:
+    length = int(argv[1])
 
-length = int(input("Minimum Input Length: "))
-include_number = input("Digits required? [Y/N]: ").upper()[0] == "Y"
-include_lower = input("Requires lower case? [Y/N]: ").upper()[0] == "Y"
-include_upper = input("Requires upper case? [Y/N]: ").upper()[0] == "Y"
-include_special = input("Requires a special character? [Y/N]: ").upper()[0] == "Y"
+    includeNumber = "0" in argv[2]
+    includeLower = "a" in argv[2]
+    includeUpper = "A" in argv[2]
+    includeSpecial = "!" in argv[2]
+elif len(argv) == 1:
+    length = int(input("Minimum Input Length: "))
+    include_number = input("Digits required? [Y/N]: ").upper()[0] == "Y"
+    include_lower = input("Requires lower case? [Y/N]: ").upper()[0] == "Y"
+    include_upper = input("Requires upper case? [Y/N]: ").upper()[0] == "Y"
+    include_special = input("Requires a special character? [Y/N]: ").upper()[0] == "Y"
+else:
+    print("Expected usage: python password_generator.py [length] [options]")
+    print("where pattern contains one or more of the following: Aa0!")
+    exit()
 
 SPECIALS = "!@#$%^&*()_+[]:;,.?/"
 password = []

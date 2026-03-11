@@ -6,8 +6,7 @@ $game_nights_hosted = "";
 $total_possible_points = "";
 $total_tech_support_hours = "";
 
-
-if (isset($id)){
+if ($id !== ""){
     $connection = get_connection();
     $id = $connection->real_escape_string($id);
     $sql =<<<SQL

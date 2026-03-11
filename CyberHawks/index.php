@@ -1,6 +1,20 @@
 <?php
 include("library.php");
 
+// intval is used to ensure that $id is an integer
+
+$showEditClubDetailsButton = true;
+$connection = get_connection();
+$sql = "SELECT COUNT(*) AS cnt FROM club_details";
+$result = $connection->query($sql);
+if ($result) {
+    $row = $result->fetch_assoc();
+    if ($row && intval($row['cnt']) > 0) {
+        $showEditClubDetailsButton = false;
+    }
+}
+$connection->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +33,9 @@ include("library.php");
 
     <div class="mb-3">
             <a href="index.php?content=detail" class="btn btn-primary" role="button">Add a Record</a>
-            <a href="index.php?content=club_details" class="btn btn-secondary" role="button">Edit Club Details</a>
+            <?php if ($showEditClubDetailsButton) { ?>
+                <a href="index.php?content=club_details" class="btn btn-secondary" role="button">Edit Club Details</a>
+            <?php } ?>
     </div>
 
     <body>
@@ -32,6 +48,6 @@ include("library.php");
                 include("$content.php");
             ?>
         </div>
-    </div>
+        </div>
     </body>
 </html>

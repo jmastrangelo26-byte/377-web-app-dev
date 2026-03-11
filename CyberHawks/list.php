@@ -53,18 +53,19 @@ while ($row = $result->fetch_assoc()){
     echo "<td><a href='index.php?content=detail&id=". $row["idmember_data"] . "'>" . $row["mem_name"] . "</a></td>";
     echo "<td>" . $row["mem_status"] . "</td>";
     echo "<td>" . $row["mem_meeting_attendance"] . "</td>";
-    echo "<td>" . $row["mem_meeting_percentage"] . "</td>";
+    echo "<td>" . $row["mem_meeting_percentage"] . "%</td>";
     echo "<td>" . $row["mem_game_attendance"] . "</td>";
-    echo "<td>" . $row["mem_game_percentage"] . "</td>";
+    echo "<td>" . $row["mem_game_percentage"] . "%</td>";
     echo "<td>" . $row["mem_comp_attendance"] . "</td>";
-    echo "<td>" . $row["mem_comp_percentage"] . "</td>";
+    echo "<td>" . $row["mem_comp_percentage"] . "%</td>";
     echo "<td>" . $row["mem_points_scored"] . "</td>";
-    echo "<td>" . $row["mem_points_percentage"] . "</td>";
+    echo "<td>" . $row["mem_points_percentage"] . "%</td>";
     echo "<td>" . $row["mem_hours_support"] . "</td>";
     echo "</tr>";
 
     $recordCount++;
 }
+
 
 ?>
 
@@ -82,3 +83,5 @@ JS;
 echo $code;
 
 ?>
+
+<a href = "index.php?content=list_details" class="btn btn-info" role="button">View Club Details</a>
