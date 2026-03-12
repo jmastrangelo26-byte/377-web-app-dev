@@ -14,8 +14,9 @@ if ($result && ($row = $result->fetch_assoc())) {
 }
 
 if ($meetings_hosted > 0) {
-    $mem_meeting_percentage = ((int) $mem_meeting_attendance / $meetings_hosted) * 100;
+    $mem_meeting_percentage = round((((int)$mem_meeting_attendance / $meetings_hosted) * 100), 2);
 } else {
+    // Data validation; protects against no club data being entered
     $mem_meeting_percentage = 0;
 }
 
@@ -33,7 +34,7 @@ if ($result && ($row = $result->fetch_assoc())) {
 }   
 
 if ($game_nights_hosted > 0) {
-    $mem_game_percentage = ((int) $mem_game_attendance / $game_nights_hosted) * 100;
+    $mem_game_percentage = round((((int)$mem_game_attendance / $game_nights_hosted) * 100), 2);
 } else {
     $mem_game_percentage = 0;
 }
@@ -73,7 +74,7 @@ if ($result && ($row = $result->fetch_assoc())) {
 }
 
 if ($total_possible_points > 0) {
-    $mem_points_percentage = ((int) $mem_points_scored / $total_possible_points) * 100;
+    $mem_points_percentage = round((((int)$mem_points_scored / $total_possible_points) * 100), 2);
 } else {
     $mem_points_percentage = 0;
 }

@@ -1,19 +1,24 @@
 <?php
 include("library.php");
 
+// Determines if club data has been input or not
 // intval is used to ensure that $id is an integer
-
 $showEditClubDetailsButton = true;
 $connection = get_connection();
-$sql = "SELECT COUNT(*) AS cnt FROM club_details";
+
+$sql =<<<SQL
+SELECT COUNT(*) AS cnt 
+FROM club_details
+SQL;
+
 $result = $connection->query($sql);
 if ($result) {
     $row = $result->fetch_assoc();
+    // looked up intval to convert value count to an integer
     if ($row && intval($row['cnt']) > 0) {
         $showEditClubDetailsButton = false;
     }
 }
-$connection->close();
 
 ?>
 
@@ -31,6 +36,7 @@ $connection->close();
         <title>CyberHawks</title>
     </head>
 
+    <!-- Shows up only if there is no data in the club details page -->
     <div class="mb-3">
             <a href="index.php?content=detail" class="btn btn-primary" role="button">Add a Record</a>
             <?php if ($showEditClubDetailsButton) { ?>

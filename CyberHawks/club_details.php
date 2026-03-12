@@ -6,6 +6,12 @@ $game_nights_hosted = "";
 $total_possible_points = "";
 $total_tech_support_hours = "";
 
+// Figured out via google that include_once prevents connection from being redeclared
+include_once("library.php");
+
+// Issue of retrieving ID solved with COPILOT
+$id = isset($_REQUEST['id']) ? trim($_REQUEST['id']) : "";
+
 if ($id !== ""){
     $connection = get_connection();
     $id = $connection->real_escape_string($id);
@@ -29,6 +35,7 @@ if ($id !== ""){
 ?>
 
 <h2>Club Details</h2>
+<h1 class="alert alert-warning" role="alert">Warning: Editing Records is not retroactive. Changes only apply to new members unless edited.</h1>
 <form action="save_details.php" method="POST">
 
     <input type="hidden" class="form-control" name="id" value="<?php echo $id; ?>">

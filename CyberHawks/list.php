@@ -10,7 +10,13 @@
 
 <h2>All Data<span id="record-count"></span></h2>
 
-<a href='index.php?content=list'>All</a>
+<form method="GET" class="mb-3">
+    <input type="hidden" name="content" value="list">
+    <!-- Used COPILOT to help write the value field for verifying if there is any value actually typed into the search box initially
+        Discovered that ? is essentially an if else statement -->
+    <input type="text" name="filter" placeholder="Filter by member name" class="form-control" value="<?php echo isset($_GET['filter']) ? htmlspecialchars($_GET['filter']) : ''; ?>">
+    <button type="submit" class="btn btn-primary mt-2">Filter</button>
+</form>
 
 <table class="table table-bordered table-hover">
     <thead class="thead-dark">
@@ -31,19 +37,28 @@
     </thead>
     <tbody>
 
+
 <?php
+
+// Looked up how to read the filter value off of my form tag which houses the dropdown menu
+// Looked up that ? is essentially an if else statement
 
 $connection = get_connection();
 
-if (!isset($filter)){
-    $filter = '';
+// $_GET allows you to pull the value of filter from the HTML section as it was written with a methood tpe of GET
+if (!isset($_GET['filter'])){
+    // Needs to be null instead of an empty so that values show up when no filter is tped in
+    $filter = NULL;
 } else {
-    $filter = $connection->real_escape_string($filter);
+    $filter = $connection->real_escape_string($_GET['filter']);
 }
+
 
 $sql =<<<SQL
  SELECT *
    FROM member_data
+   WHERE mem_name LIKE '$filter%'
+  ORDER BY mem_name
 SQL;
 
 $recordCount = 0;

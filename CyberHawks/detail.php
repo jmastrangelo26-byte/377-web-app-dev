@@ -53,6 +53,7 @@ else
     $id = "";
 }
 
+// Code that determines the calculated percentages
 include("calculate.php");
 
 ?>
