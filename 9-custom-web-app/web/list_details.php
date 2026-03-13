@@ -16,7 +16,7 @@
             <th>Meetings Hosted</th>
             <th>Game Nights Hosted</th>
             <th>Total Possible Points</th>
-            <th>Total Points Scored</th>
+            <th>Total Tech Support Hours</th>
            
         </tr>
     </thead>
