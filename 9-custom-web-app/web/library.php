@@ -3,7 +3,7 @@
 /*************************************************************************************************
  * library.php
  *
- * Common functions used across the hMDB website
+ * Common functions used across the CyberHawks website
  *
  * This page will use the optional 'nav' request parameter to include a specific page. If the
  * parameter is not specified then the default list page will be included.

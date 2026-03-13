@@ -1,4 +1,9 @@
 <?php
+/*************************************************************************************************
+ * save_details.php
+ *
+ * This page saves the club details entry record based on the values submitted by the user 
+ *************************************************************************************************/
 
 include("library.php");
 $connection = get_connection();

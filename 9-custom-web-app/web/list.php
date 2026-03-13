@@ -3,7 +3,7 @@
 /*************************************************************************************************
  * list.php
  *
- * Displays a list of movies. This page expects to be included within index.php.
+ * Displays a list of the member entries. This page expects to be included within index.php.
  *************************************************************************************************/
 
 ?>
@@ -12,7 +12,7 @@
 
 <form method="GET" class="mb-3">
     <input type="hidden" name="content" value="list">
-    <!-- Used COPILOT to help write the value field for verifying if there is any value actually typed into the search box initially
+    <!-- Used COPILOT to help write the value field to use htmlspecialchars to santize input
         Discovered that ? is essentially an if else statement -->
     <input type="text" name="filter" placeholder="Filter by member name" class="form-control" value="<?php echo isset($_GET['filter']) ? htmlspecialchars($_GET['filter']) : ''; ?>">
     <button type="submit" class="btn btn-primary mt-2">Filter</button>
@@ -57,7 +57,7 @@ if (!isset($_GET['filter'])){
 $sql =<<<SQL
  SELECT *
    FROM member_data
-   WHERE mem_name LIKE '$filter%'
+   WHERE mem_name LIKE '%$filter%'
   ORDER BY mem_name
 SQL;
 

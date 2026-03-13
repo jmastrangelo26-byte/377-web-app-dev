@@ -7,7 +7,7 @@ $showEditClubDetailsButton = true;
 $connection = get_connection();
 
 $sql =<<<SQL
-SELECT COUNT(*) AS cnt 
+SELECT COUNT(*) AS count 
 FROM club_details
 SQL;
 
@@ -15,7 +15,7 @@ $result = $connection->query($sql);
 if ($result) {
     $row = $result->fetch_assoc();
     // looked up intval to convert value count to an integer
-    if ($row && intval($row['cnt']) > 0) {
+    if ($row && intval($row['count']) > 0) {
         $showEditClubDetailsButton = false;
     }
 }
@@ -39,7 +39,9 @@ if ($result) {
     <!-- Shows up only if there is no data in the club details page -->
     <div class="mb-3">
             <a href="index.php?content=detail" class="btn btn-primary" role="button">Add a Record</a>
-            <?php if ($showEditClubDetailsButton) { ?>
+            <?php
+            // Learned online that you can use PHP to decide if HTML code should be run or not
+            if ($showEditClubDetailsButton) { ?>
                 <a href="index.php?content=club_details" class="btn btn-secondary" role="button">Edit Club Details</a>
             <?php } ?>
     </div>

@@ -1,3 +1,12 @@
+<?php
+/*************************************************************************************************
+ * list_details.php
+ *
+ * Displays a list of of the club details. This page expects to be included within index.php.
+ *************************************************************************************************/
+?>
+
+
 <h2>Club Details <span id="record-count"></span></h2>
 
 <table class="table table-bordered table-hover">

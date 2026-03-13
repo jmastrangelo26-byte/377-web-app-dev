@@ -1,4 +1,10 @@
 <?php
+/*************************************************************************************************
+ * club_details.php
+ *
+ * Displays the details for general club info that applies to all members. 
+ * This page expects to be included within index.php.
+ *************************************************************************************************/
 
 $comps_attended = "";
 $meetings_hosted = "";

@@ -3,11 +3,14 @@
 /*************************************************************************************************
  * save.php
  *
- * This page saves a single movie record based on the values submitted by the user 
+ * This page saves a single member record based on the values submitted by the user 
  *************************************************************************************************/
 include_once("library.php");
 $connection = get_connection();
 
+// Original issue was that percentages would only save after manually saving twice
+// Used COPILOT to realize that percentages were not being cacluated before the SQL statement
+// I decided to use a separate calculation page so that it could be plugged in both here and in detail to prevent this 
 include("calculate.php");
 
 // Ensure competition percentage is always derived from the latest attendance value so users don't need to save twice.

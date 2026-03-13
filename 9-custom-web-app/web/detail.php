@@ -3,7 +3,7 @@
 /*************************************************************************************************
  * detail.php
  *
- * Displays the details for a single movie. This page expects to be included within index.php.
+ * Displays the details for a single member. This page expects to be included within index.php.
  *************************************************************************************************/
 
 $mem_name = "";
@@ -125,8 +125,6 @@ include("calculate.php");
         <label for="mem_hours_support" class="form-label">Member Hour Support</label>
         <input id="mem_hours_support" type="number" min="0" step="0.1" class="form-control" name="mem_hours_support" value="<?php echo $mem_hours_support; ?>">
     </div>
-
-
 
     <button type="submit" class="btn btn-primary">Save</button>
     <a href="delete.php?id=<?php echo $id; ?>" class="btn btn-danger" role="button">Delete</a>

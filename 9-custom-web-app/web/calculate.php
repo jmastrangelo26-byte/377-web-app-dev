@@ -1,4 +1,7 @@
 <?php 
+// This page is used to calculate the percentages for attendance and points scored
+// based on the raw attendance and points values entered by the user. It is included in both save.php and
+// detail.php to ensure that percentages are always up to date without requiring users to save twice.
 
 // calculate % of meetings attended
 $meetings_hosted = 0; 
@@ -60,7 +63,7 @@ if ($comps_attended > 0) {
 
 $mem_comp_percentage = round($mem_comp_percentage, 2);
 
-// calculate competition accuracy
+// calculate competition point accuracy
 $total_possible_points = 0;
 $sql =<<<SQL
 SELECT total_possible_points
