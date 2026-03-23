@@ -9,6 +9,8 @@
  * parameter is not specified then the default list page will be included.
  *************************************************************************************************/
 
+error_reporting(0); 
+
 extract($_REQUEST);
 
 function get_connection(){

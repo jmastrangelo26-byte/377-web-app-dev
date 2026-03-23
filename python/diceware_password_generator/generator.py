@@ -1,31 +1,68 @@
-import random
+from sys import argv
+import random, tkinter as tk
 
-random_words = {} 
+root = tk.Tk()
+root.title("Diceware Password Generator")
+root.geometry("400x400")
 
-file = open("/Users/jamesmastrangelo/Documents/WebAppDev/377-web-app-dev/python/diceware_password_generator/words.txt", "r")
-lines = file.readlines()
+tk.Label(root, text="Number of Words").grid(row=0, column=0, padx=5, pady=5, sticky=tk.E)
+entry1 = tk.Entry(root)
+entry1.grid(row=0, column=1, padx=5, pady=5, sticky=tk.W)  
 
-def roll_die():
-    roll = ""
+
+if len(argv) == 3:
+    length = int(argv[1])
+
+    includeNumber = "0" in argv[2]
+    includeLower = "a" in argv[2]
+    includeUpper = "A" in argv[2]
+    includeSpecial = "!" in argv[2]
+elif len(argv) == 1:
+    length = int(input("Minimum Input Length: "))
+    include_number = input("Digits required? [Y/N]: ").upper()[0] == "Y"
+    include_lower = input("Requires lower case? [Y/N]: ").upper()[0] == "Y"
+    include_upper = input("Requires upper case? [Y/N]: ").upper()[0] == "Y"
+    include_special = input("Requires a special character? [Y/N]: ").upper()[0] == "Y"
+else:
+    print("Expected usage: python password_generator.py [length] [options]")
+    print("where pattern contains one or more of the following: Aa0!")
+    exit()
+
+SPECIALS = "!@#$%^&*()_+[]:;,.?/"
+password = []
+
+if include_number:
+    password.append(str(random.randint(0,9)))
+
+if include_lower:
+    password.append(chr(ord("a") + random.randint(0,25)))
+
+if include_upper:
+    password.append(chr(ord("A") + random.randint(0,25)))
+
+if include_special:
+    password.append(SPECIALS[random.randint(0, len(SPECIALS) - 1)])
+
+while len(password) < length:
+
+    choice = random.randint(1,4)
+
+    if choice == 1 and include_number:
+        password.append(str(random.randint(0,9)))
+
+    if choice == 2 and include_upper:
+        password.append(chr(ord("A") + random.randint(0,25)))
+
+    if choice == 3 and include_lower:
+        password.append(chr(ord("a") + random.randint(0,25)))
+
+    if choice == 3 and include_lower:
+        password.append(chr(ord("a") + random.randint(0,25)))
+
+    if choice == 4 and include_special:
+        password.append(SPECIALS[random.randint(0, len(SPECIALS) - 1)])
     
-    for i in range(5):
-        roll = roll + str(random.randint(1,6))
-    return str(roll)
 
 
-for i in range(5):
-    roll = roll_die()
-    print(roll)
-        
-    for line in lines:
-        line = line.strip()
-
-        split_line = line.split()
-
-        if split_line[1] == roll:
-            random_words.update({roll: split_line[1]})
-            print(split_line[1])
-
-
-
-
+random.shuffle(password)
+print("".join(password))

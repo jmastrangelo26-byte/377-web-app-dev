@@ -63,5 +63,10 @@ if ($id == ""){
     SQL;
 }
 
-$connection->query($sql);
-header('Location: index.php?content=list');
+if ($connection->query($sql)){
+    // http_response_code(200);
+    $id = $connection->insert_id; // Get the ID of the newly inserted record
+    print($id);
+}else{
+    http_response_code(401);
+}   

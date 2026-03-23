@@ -62,12 +62,12 @@ include("calculate.php");
 
 <form action="save.php" method="POST">
 
-    <input type="hidden" class="form-control" name="id" value="<?php echo $id; ?>">
+    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $id; ?>">
 
 
     <div class="mb-3">
         <label for="mem_name" class="form-label">Member's Name</label>
-        <input id="mem_name" type="text" class="form-control" name="mem_name" value="<?php echo $mem_name; ?>">
+        <input id="mem_name" type="text" class="form-control" name="mem_name" id="mem_name" value="<?php echo $mem_name; ?>">
     </div>
 
     <div class="mb-3">
@@ -83,50 +83,50 @@ include("calculate.php");
 
     <div class="mb-3">
         <label for="mem_meeting_attendance" class="form-label">Meeting Attendance</label>
-        <input id="mem_meeting_attendance" type="number" min="0" step="1" class="form-control" name="mem_meeting_attendance" value="<?php echo $mem_meeting_attendance; ?>">
+        <input id="mem_meeting_attendance" type="number" min="0" step="1" class="form-control" name="mem_meeting_attendance" id="mem_meeting_attendance" value="<?php echo $mem_meeting_attendance; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_meeting_percentage" class="form-label">Meeting Attendance Percentage</label>
-        <input id="mem_meeting_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_meeting_percentage" value="<?php echo $mem_meeting_percentage; ?>" readonly>
+        <input id="mem_meeting_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_meeting_percentage" id="mem_meeting_percentage" value="<?php echo $mem_meeting_percentage; ?>" readonly>
     </div>
 
     <div class="mb-3">
         <label for="mem_game_attendance" class="form-label">Game Nights Attended</label>
-        <input id="mem_game_attendance" type="number" min="0" step="1" class="form-control" name="mem_game_attendance" value="<?php echo $mem_game_attendance; ?>">
+        <input id="mem_game_attendance" type="number" min="0" step="1" class="form-control" name="mem_game_attendance" id="mem_game_attendance" value="<?php echo $mem_game_attendance; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_game_percentage" class="form-label">Game Nights Percentage</label>
-        <input id="mem_game_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_game_percentage" value="<?php echo $mem_game_percentage; ?>" readonly>
+        <input id="mem_game_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_game_percentage" id="mem_game_percentage" value="<?php echo $mem_game_percentage; ?>" readonly>
     </div>
 
     <div class="mb-3">
         <label for="mem_comp_attendance" class="form-label">Competition Attendance</label>
-        <input id="mem_comp_attendance" type="number" min="0" step="1" class="form-control" name="mem_comp_attendance" value="<?php echo $mem_comp_attendance; ?>">
+        <input id="mem_comp_attendance" type="number" min="0" step="1" class="form-control" name="mem_comp_attendance" id="mem_comp_attendance" value="<?php echo $mem_comp_attendance; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_comp_percentage" class="form-label">Competition Attendance Percentage</label>
-        <input id="mem_comp_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_comp_percentage" value="<?php echo $mem_comp_percentage; ?>" readonly>
+        <input id="mem_comp_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_comp_percentage" id="mem_comp_percentage" value="<?php echo $mem_comp_percentage; ?>" readonly>
     </div>
 
     <div class="mb-3">
         <label for="mem_points_scored" class="form-label">Points Scored</label>
-        <input id="mem_points_scored" type="number" min="0" step="1" class="form-control" name="mem_points_scored" value="<?php echo $mem_points_scored; ?>">
+        <input id="mem_points_scored" type="number" min="0" step="1" class="form-control" name="mem_points_scored" id="mem_points_scored" value="<?php echo $mem_points_scored; ?>">
     </div>
 
     <div class="mb-3">
         <label for="mem_points_percentage" class="form-label">Competition Accuracy</label>
-        <input id="mem_points_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_points_percentage" value="<?php echo $mem_points_percentage; ?>" readonly>
+        <input id="mem_points_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_points_percentage" id="mem_points_percentage" value="<?php echo $mem_points_percentage; ?>" readonly>
     </div>
 
     <div class="mb-3">
         <label for="mem_hours_support" class="form-label">Member Hour Support</label>
-        <input id="mem_hours_support" type="number" min="0" step="0.1" class="form-control" name="mem_hours_support" value="<?php echo $mem_hours_support; ?>">
+        <input id="mem_hours_support" type="number" min="0" step="0.1" class="form-control" name="mem_hours_support" id="mem_hours_support" value="<?php echo $mem_hours_support; ?>">
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-primary" onclick="save()">Save</button>
     <a href="delete.php?id=<?php echo $id; ?>" class="btn btn-danger" role="button">Delete</a>
     <a href="index.php?content=list" class="btn btn-secondary" role="button">Cancel</a>
 </form>
@@ -134,3 +134,40 @@ include("calculate.php");
 <?php
 $connection->close();
 ?>
+
+<script>
+
+function save() {
+    var settings = {
+        'async': true,
+        'url': 'save.php?id=' + $('#id').val() + 
+            '&mem_name=' + $('#mem_name').val() + 
+            '&mem_status=' + $('#mem_status').val() + 
+            '&mem_meeting_attendance=' + $('#mem_meeting_attendance').val() + 
+            '&mem_meeting_percentage=' + $('#mem_meeting_percentage').val() + 
+            '&mem_game_attendance=' + $('#mem_game_attendance').val() + 
+            '&mem_game_percentage=' + $('#mem_game_percentage').val() + 
+            '&mem_comp_attendance=' + $('#mem_comp_attendance').val() + 
+            '&mem_comp_percentage=' + $('#mem_comp_percentage').val() + 
+            '&mem_points_scored=' + $('#mem_points_scored').val() + 
+            '&mem_points_percentage=' + $('#mem_points_percentage').val() + 
+            '&mem_hours_support=' + $('#mem_hours_support').val(),
+            'method': 'POST',
+        'headers': {
+            'Cache-Control': 'no-cache',
+        },
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+
+        if ($(('#id').val()) == "") {
+            $('#id').val(response);
+        }
+        $('#results').html('Member saved successfully.' + response);
+        showAlert('success', 'Success!', 'Member saved successfully.');
+    }).fail(function() {
+        showAlert('danger', 'Error!', 'Error occurred while saving data.');
+    });
+}
+</script>
