@@ -17,6 +17,7 @@ $mem_comp_percentage = "";
 $mem_points_scored = "";
 $mem_points_percentage = "";
 $mem_hours_support = "";
+$date_joined = "";
 
 include_once("library.php"); // include_once makes sure that the connection is not redeclared multiple times
 $connection = get_connection();
@@ -47,6 +48,7 @@ if (isset($id)){
     $mem_points_scored = $row['mem_points_scored'];
     $mem_points_percentage = $row['mem_points_percentage'];
     $mem_hours_support = $row['mem_hours_support'];
+    $date_joined = $row['date_joined'];
 }
 else
 {
@@ -126,6 +128,11 @@ include("calculate.php");
         <input id="mem_hours_support" type="number" min="0" step="0.1" class="form-control" name="mem_hours_support" id="mem_hours_support" value="<?php echo $mem_hours_support; ?>">
     </div>
 
+    <div class="mb-3">
+        <label for="date_joined" class="form-label">Date Joined</label>
+        <input id="date_joined" type="date" class="form-control" name="date_joined" id="date_joined" value="<?php echo $date_joined; ?>">
+    </div>
+
     <button type="button" class="btn btn-primary" onclick="save()">Save</button>
     <a href="delete.php?id=<?php echo $id; ?>" class="btn btn-danger" role="button">Delete</a>
     <a href="index.php?content=list" class="btn btn-secondary" role="button">Cancel</a>
@@ -151,6 +158,7 @@ function save() {
             '&mem_comp_percentage=' + $('#mem_comp_percentage').val() + 
             '&mem_points_scored=' + $('#mem_points_scored').val() + 
             '&mem_points_percentage=' + $('#mem_points_percentage').val() + 
+            '&date_joined=' + $('#date_joined').val() + 
             '&mem_hours_support=' + $('#mem_hours_support').val(),
             'method': 'POST',
         'headers': {
@@ -161,7 +169,7 @@ function save() {
     $.ajax(settings).done(function (response) {
         console.log(response);
 
-        if ($(('#id').val()) == "") {
+        if ($('#id').val() == "") {
             $('#id').val(response);
         }
         $('#results').html('Member saved successfully.' + response);

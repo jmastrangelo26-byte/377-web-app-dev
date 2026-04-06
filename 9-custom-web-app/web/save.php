@@ -37,13 +37,14 @@ $mem_comp_percentage = $connection->real_escape_string($mem_comp_percentage);
 $mem_points_scored = $connection->real_escape_string($mem_points_scored);
 $mem_points_percentage = $connection->real_escape_string($mem_points_percentage);
 $mem_hours_support = $connection->real_escape_string($mem_hours_support);
+$date_joined = $connection->real_escape_string($date_joined);
 
 $sql = "";
 
 if ($id == ""){
     $sql = <<<SQL
-    INSERT INTO member_data (mem_name, mem_status, mem_meeting_attendance, mem_meeting_percentage, mem_game_attendance, mem_game_percentage, mem_comp_attendance, mem_comp_percentage, mem_points_scored, mem_points_percentage, mem_hours_support)
-    VALUES ('$mem_name', '$mem_status', '$mem_meeting_attendance', $mem_meeting_percentage, '$mem_game_attendance', '$mem_game_percentage', '$mem_comp_attendance', '$mem_comp_percentage', '$mem_points_scored', '$mem_points_percentage', '$mem_hours_support')
+    INSERT INTO member_data (mem_name, mem_status, mem_meeting_attendance, mem_meeting_percentage, mem_game_attendance, mem_game_percentage, mem_comp_attendance, mem_comp_percentage, mem_points_scored, mem_points_percentage, mem_hours_support, date_joined)
+    VALUES ('$mem_name', '$mem_status', '$mem_meeting_attendance', $mem_meeting_percentage, '$mem_game_attendance', '$mem_game_percentage', '$mem_comp_attendance', '$mem_comp_percentage', '$mem_points_scored', '$mem_points_percentage', '$mem_hours_support', '$date_joined')
     SQL;
 }else{
     $sql =<<<SQL
@@ -58,7 +59,8 @@ if ($id == ""){
         mem_comp_percentage = '$mem_comp_percentage',
         mem_points_scored = '$mem_points_scored',
         mem_points_percentage = '$mem_points_percentage',
-        mem_hours_support = '$mem_hours_support'        
+        mem_hours_support = '$mem_hours_support',        
+        date_joined = '$date_joined'
     WHERE idmember_data = $id
     SQL;
 }

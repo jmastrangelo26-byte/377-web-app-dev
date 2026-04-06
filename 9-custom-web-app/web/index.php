@@ -33,16 +33,31 @@ if ($result) {
             .alert-position {
                 position: fixed;
                 top: 20px;
-                right: 20px;
+                left: 20px;
                 z-index: 9999;
                 display: none;
+            }
+            .table th {
+                background-color: #f8f9fa;
+                font-weight: 600;
+                border-top: none;
+            }
+            .table-responsive {
+                margin-top: 20px;
+            }
+            .dataTables_wrapper .dataTables_paginate .paginate_button {
+                padding: 0.375rem 0.75rem;
+                margin: 0 2px;
+                border-radius: 0.25rem;
             }
         </style>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+        <script src="//cdn.datatables.net/2.3.7/js/dataTables.min.js"></script>
+        <link rel="stylesheet" href="//cdn.datatables.net/2.3.7/css/dataTables.min.css">
+        
         <script>
             function showAlert(type, title, message) {
                 $('#alert').hide();
