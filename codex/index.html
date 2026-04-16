@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework Calendar</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel">
+        <div class="status">
+          <div>
+            <p class="eyebrow">Planner</p>
+            <h1>Homework Calendar</h1>
+          </div>
+          <div class="summary">
+            <span>Assignments</span>
+            <strong id="assignment-count">0</strong>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button id="prev-month" type="button">Previous</button>
+          <h2 id="month-label">Month</h2>
+          <button id="next-month" type="button">Next</button>
+        </div>
+
+        <section class="profiles-panel">
+          <div class="list-header">
+            <div>
+              <p class="eyebrow">Profiles</p>
+              <p class="profiles-copy">Pick who is adding assignments to the shared calendar.</p>
+            </div>
+          </div>
+          <div id="profile-list" class="profile-list" aria-label="Profile list"></div>
+          <form id="profile-form" class="profile-form">
+            <label>
+              Name
+              <input id="profile-name-input" name="profileName" type="text" maxlength="40" required />
+            </label>
+            <label>
+              Marker Color
+              <input id="profile-color-input" name="profileColor" type="color" value="#d06f9a" />
+            </label>
+            <div class="form-actions">
+              <button type="submit">Add Profile</button>
+            </div>
+          </form>
+        </section>
+
+        <div class="calendar-shell">
+          <div class="weekday-row" aria-hidden="true">
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+          </div>
+          <div
+            id="calendar-grid"
+            class="calendar-grid"
+            role="grid"
+            aria-label="Homework calendar"
+          ></div>
+        </div>
+
+        <section class="details">
+          <div class="details-header">
+            <div>
+              <p class="eyebrow">Selected Date</p>
+              <h3 id="selected-date-label">Choose a day</h3>
+            </div>
+            <button id="today-button" type="button">Today</button>
+          </div>
+
+          <form id="assignment-form" class="assignment-form">
+            <label>
+              Title
+              <input id="title-input" name="title" type="text" maxlength="80" required />
+            </label>
+            <label>
+              Course
+              <input id="course-input" name="course" type="text" maxlength="40" />
+            </label>
+            <label>
+              Notes
+              <textarea id="notes-input" name="notes" rows="3" maxlength="200"></textarea>
+            </label>
+            <div class="form-actions">
+              <p id="active-profile-label" class="active-profile-label">Adding as</p>
+              <button type="submit">Add Assignment</button>
+            </div>
+          </form>
+
+          <div class="list-header">
+            <p class="eyebrow">Due This Day</p>
+            <button id="clear-day-button" type="button">Clear Day</button>
+          </div>
+          <ul id="assignment-list" class="assignment-list"></ul>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.mjs"></script>
+  </body>
+</html>
