@@ -6,6 +6,10 @@
  * Displays the details for a single member. This page expects to be included within index.php.
  *************************************************************************************************/
 
+// Should be a single add button at top that allows you to pick any date to add
+// Easy way to mitigate the problem of having to account for the problem of submitting multiple forms after only
+//  one click of the actual date on the calendar (like most calendar apps) assuming the user wanted to add multiple events for that day
+
 $mem_name = "";
 $mem_status = "";
 $mem_meeting_attendance = "";

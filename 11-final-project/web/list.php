@@ -131,7 +131,9 @@ SQL;
 
     $result = $connection->query($sql);
     while ($row = $result->fetch_assoc()) {
-        $map[$row['due_date']] = $row;  
+        // Must exract y-m-d because datetime stores the hour and minute, which we do not want
+        $dateKey = date('Y-m-d', strtotime($row['due_date']));
+        $map[$dateKey] = $row;  
     }
 
     while ($date <= $lastDayOfMonth){
@@ -142,7 +144,8 @@ SQL;
                 if (($week > 0 || $day >= $firstDayOfMonth) && $date <= $lastDayOfMonth){
                     print($date);
                     print('<br>');
-                    print(isset($map["$year-$month-$date"]) ? $map["$year-$month-$date"]['title'] : '');
+                    $dateKey = sprintf('%04d-%02d-%02d', $year, $month, $date);
+                    print(isset($map[$dateKey]) ? $map[$dateKey]['title'] : '');
                     $date++;
                 }
             }
