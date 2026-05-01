@@ -105,7 +105,7 @@ include("calculate.php");
     <div class="mb-3">
         <label for="mem_game_percentage" class="form-label">Game Nights Percentage</label>
         <input id="mem_game_percentage" type="number" min="0" max="100" step="0.1" class="form-control" name="mem_game_percentage" id="mem_game_percentage" value="<?php echo $mem_game_percentage; ?>" readonly>
-    </div>
+      </div>
 
     <div class="mb-3">
         <label for="mem_comp_attendance" class="form-label">Competition Attendance</label>

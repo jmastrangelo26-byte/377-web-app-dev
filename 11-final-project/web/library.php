@@ -17,4 +17,3 @@ function get_connection(){
     }
     return $connection;
 }
-

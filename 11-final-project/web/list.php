@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html>
 
+<script> 
+    // makes a call to a page that will generate all events for a given date and renders them in a portion of the page
+    function loadDateEvents(date){
+        $.ajax({
+            url: 'events.php?date=' + date,
+            method: 'GET',
+            success: function(response) {
+                $('#events-field').html(response);
+            },
+            error: function() {
+                $('#events-field').html('Error loading events.');
+            }
+        });
+    }
+</script>
+
 <body>
     <div class="container"> 
     
@@ -19,7 +35,7 @@
     print('<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>');
     print('</thead>');
     print('<tbody>');
-    // temporary variables will be replaced by user input 
+    // these next two variables retrieve user input for the date and year to load a desired calendar for the user
     $year = isset($_POST['year']) && !empty($_POST['year']) ? intval($_POST['year']) : date('Y');    
     $month = isset($_POST['month']) && !empty($_POST['month']) ? intval($_POST['month']) : 1;  
 
@@ -28,6 +44,8 @@
     $date = 1; 
     $week = 0;
     
+    // create a mapping of dates to events for the month so that we can easily display which days have events when we render the calendar
+    // looked up on google how to create a date object from a month number so that we can display the month name instead of just the number
     $dateObj = DateTime::createFromFormat('!m', $month);
     print("<h1>{$year}</h1>");
     print("<h1>{$dateObj->format('F')}</h1>");
@@ -37,17 +55,18 @@
     $map = [];
 
 $sql = <<<SQL
-    SELECT *
-    FROM planned_items
-    WHERE MONTH(due_date) = $month AND YEAR(due_date) = $year
+SELECT *
+FROM planned_items
+WHERE MONTH(due_date) = $month AND YEAR(due_date) = $year
 SQL;
 
+    // add all events for a single day to a mapping so that we can easily display which days have events when we render the calendar
+    $events = [];
     $result = $connection->query($sql);
     while ($row = $result->fetch_assoc()) {
-        // Must exract y-m-d because datetime stores the hour and minute, which we do not want
         $dateKey = date('Y-m-d', strtotime($row['due_date']));
-        $map[$dateKey] = $row;  
-    }
+        $map[$dateKey][] = $row;
+}
 
     while ($date <= $lastDayOfMonth){
         print('<tr>');
@@ -58,17 +77,26 @@ SQL;
                     print($date);
                     print('<br>');
                     $dateKey = sprintf('%04d-%02d-%02d', $year, $month, $date);
-                    print(isset($map[$dateKey]) ? $map[$dateKey]['title'] : '');
-                    $date++;
+
+                    // If any events for a date, a button is displayed that allows the user to view all events
+                    if (isset($map[$dateKey])) {
+                        // pass datekey into a function that will render a separate portion of the page with all the events
+                        print("<input type='button' value='View Events' onclick='loadDateEvents(\"$dateKey\")'>");
+                    }
                 }
+                $date++;
             }
             print('</td>');
         }
+        print('</tr>');
         $week++;
     }
     print('</tbody>');
     print('</table>');
 ?>
+    </div>
+
+    <div id="events-field">
     </div>
    
 </body>

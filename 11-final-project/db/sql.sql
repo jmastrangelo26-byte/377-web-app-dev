@@ -16,6 +16,10 @@ CHANGE COLUMN `due_date` `due_date` DATETIME NULL DEFAULT NULL ,
 CHANGE COLUMN `start_time` `start_time` DATETIME NULL DEFAULT NULL ,
 CHANGE COLUMN `end_time` `end_time` DATETIME NULL DEFAULT NULL ;
 
+ALTER TABLE `assignment_planner`.`planned_items` 
+CHANGE COLUMN `priority` `priority` VARCHAR(45) NULL DEFAULT NULL ;
+
+
 INSERT INTO `assignment_planner`.`planned_items`
 (title, description, item_type, due_date, start_time, end_time, priority)
 VALUES

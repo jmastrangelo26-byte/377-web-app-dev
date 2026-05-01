@@ -11,6 +11,8 @@ $priority = "";
 include_once("library.php"); // include_once makes sure that the connection is not redeclared multiple times
 $connection = get_connection();
 
+
+// Read any applicable data for a pre-existing event and fill it in the form
 if (isset($id)){
     $sql =<<<SQL
     SELECT *
@@ -29,9 +31,18 @@ if (isset($id)){
     $title = $row['title'];
     $description = $row['description'];
     $item_type = $row['item_type'];
-    $due_date = $row['due_date'];
-    $start_time = $row['start_time'];
-    $end_time = $row['end_time'];
+    $due_date = date('Y-m-d', strtotime($row['due_date']));
+    
+    
+    if ($row['start_time'] != null) {
+        // Datetimes must be converted to a string and the "time" portion removed so that the browser can render 
+        // it properly in the form field
+        $start_time = date('H:i', strtotime($row['start_time']));
+    }
+
+    if ($row['end_time'] != null) {
+        $end_time = date('H:i', strtotime($row['end_time']));
+    }
     $priority = $row['priority'];
 }
 else
@@ -41,13 +52,13 @@ else
 
 ?>
 
-<h2><?php echo $title; ?></h2>
+<h2 class="form-label"><?php echo $title; ?></h2>
 
-<foirm action="save.php" method="POST">
-    <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+<form action="save.php" method="POST" class="centered-form">
+    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $id; ?>">
     
     <div class="mb-3">
-        <label for="title" class="form-label">Name of Assignment/Event"</label>
+        <label for="title" class="form-label">Name of Assignment/Event</label>
         <input type="text" class="form-control" name="title" id="title" value="<?php echo $title; ?>">
     </div>
 
@@ -91,4 +102,10 @@ else
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
+    <a href="delete.php?id=<?php echo $id; ?>" class="btn btn-danger" role="button">Delete</a>
+    <a href="index.php?content=list" class="btn btn-secondary" role="button">Cancel</a>
 </form>
+
+<?php
+$connection->close();
+?>

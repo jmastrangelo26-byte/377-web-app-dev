@@ -79,6 +79,7 @@ if ($result) {
     <!-- Shows up only if there is no data in the club details page -->
     <div class="mb-3">
             <a href="index.php?content=detail" class="btn btn-primary" role="button">Add a Record</a>
+            
             <?php
             // Learned online that you can use PHP to decide if HTML code should be run or not
             if ($showEditClubDetailsButton) { ?>
