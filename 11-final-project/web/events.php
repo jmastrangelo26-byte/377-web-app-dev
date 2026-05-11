@@ -9,6 +9,8 @@ SELECT *
 FROM planned_items
 -- Uses the "like" operator to account for the fact that times may be different for different events on the same day
 WHERE due_date like '$date%'
+AND completed = 'False'
+ORDER BY start_time ASC
 SQL;
 
 $events = [];

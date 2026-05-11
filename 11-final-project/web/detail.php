@@ -3,7 +3,8 @@
 $title = "";
 $description = "";
 $item_type = "";
-$due_date = "";
+//  Makes it so the due date for adding an event/assignment defaults to the current date
+$due_date = date('Y-m-d');
 $start_time = "";
 $end_time = "";
 $priority = "";
@@ -56,10 +57,16 @@ else
 
 <form action="save.php" method="POST" class="centered-form">
     <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $id; ?>">
+
+    <?php
+        // Always set completed to 'False' when editing/saving through the form
+        // Only the "Complete!" button should mark as 'True'
+        echo '<input type="hidden" class="form-control" name="completed" value="False">';
+    ?>
     
     <div class="mb-3">
-        <label for="title" class="form-label">Name of Assignment/Event</label>
-        <input type="text" class="form-control" name="title" id="title" value="<?php echo $title; ?>">
+        <label for="title" class="form-label"></label>
+        <input type="text" placeholder="Name of Assignment/Event" class="form-control" name="title" id="title" value="<?php echo $title; ?>">
     </div>
 
     <div class="mb-3">
@@ -102,6 +109,11 @@ else
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
+    <?php
+        if (!empty($id)) {
+            echo '<a href="complete-tasks.php?id=' . $id . '" class="btn btn-success" role="button">Complete!</a>';
+        }
+    ?>
     <a href="delete.php?id=<?php echo $id; ?>" class="btn btn-danger" role="button">Delete</a>
     <a href="index.php?content=list" class="btn btn-secondary" role="button">Cancel</a>
 </form>

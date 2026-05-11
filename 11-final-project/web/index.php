@@ -14,6 +14,7 @@
 
         <div class="mb-3">
             <a href="index.php?content=detail" class="btn btn-primary" role="button">Add Assignment/Event</a>
+            <a href="index.php?content=view-completed-tasks" class="btn btn-secondary" role="button">View Completed Tasks</a>
         </div>
 
         <?php

@@ -9,14 +9,15 @@ $item_type = $connection->real_escape_string($item_type);
 $due_date = $connection->real_escape_string($due_date);
 $start_time = $connection->real_escape_string($start_time);
 $end_time = $connection->real_escape_string($end_time);
+$connection->real_escape_string($completed);
 $priority = $connection->real_escape_string($priority);
 
 $sql = "";
 
 if ($id == ""){
     $sql = <<<SQL
-    INSERT INTO planned_items (title, description, item_type, due_date, start_time, end_time, priority)
-    VALUES ('$title', '$description', '$item_type', '$due_date', '$start_time', '$end_time', '$priority')
+    INSERT INTO planned_items (title, description, item_type, due_date, start_time, end_time, priority, completed)
+    VALUES ('$title', '$description', '$item_type', '$due_date', '$start_time', '$end_time', '$priority', '$completed')
     SQL;
 }else{
     $sql =<<<SQL
@@ -27,7 +28,8 @@ if ($id == ""){
         due_date = '$due_date',
         start_time = '$start_time',
         end_time = '$end_time',
-        priority = '$priority'
+        priority = '$priority',
+        completed = '$completed'
     WHERE id = $id
     SQL;
 } 

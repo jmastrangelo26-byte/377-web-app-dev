@@ -3,104 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework Calendar</title>
+    <title>Starfall Exile</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="app">
-      <section class="panel">
-        <div class="status">
+    <main class="game-shell">
+      <canvas id="game-canvas" aria-label="Starfall Exile game view"></canvas>
+
+      <section class="hud">
+        <div class="hud-strip">
           <div>
-            <p class="eyebrow">Planner</p>
-            <h1>Homework Calendar</h1>
+            <p class="eyebrow">Mission</p>
+            <h1>Starfall Exile</h1>
           </div>
-          <div class="summary">
-            <span>Assignments</span>
-            <strong id="assignment-count">0</strong>
+          <div class="status-block">
+            <span>Hearts</span>
+            <strong id="hearts-display">10</strong>
+          </div>
+          <div class="status-block">
+            <span>Phase</span>
+            <strong id="phase-display">Space Drop</strong>
+          </div>
+          <div class="status-block">
+            <span>Ammo</span>
+            <strong>Infinite</strong>
           </div>
         </div>
 
-        <div class="toolbar">
-          <button id="prev-month" type="button">Previous</button>
-          <h2 id="month-label">Month</h2>
-          <button id="next-month" type="button">Next</button>
+        <div class="boss-panel hidden" id="boss-panel">
+          <div class="boss-header">
+            <span>Alien Tarantula</span>
+            <span id="boss-health-label">100%</span>
+          </div>
+          <div class="boss-bar-track">
+            <div id="boss-bar-fill" class="boss-bar-fill"></div>
+          </div>
         </div>
 
-        <section class="profiles-panel">
-          <div class="list-header">
-            <div>
-              <p class="eyebrow">Profiles</p>
-              <p class="profiles-copy">Pick who is adding assignments to the shared calendar.</p>
-            </div>
-          </div>
-          <div id="profile-list" class="profile-list" aria-label="Profile list"></div>
-          <form id="profile-form" class="profile-form">
-            <label>
-              Name
-              <input id="profile-name-input" name="profileName" type="text" maxlength="40" required />
-            </label>
-            <label>
-              Marker Color
-              <input id="profile-color-input" name="profileColor" type="color" value="#d06f9a" />
-            </label>
-            <div class="form-actions">
-              <button type="submit">Add Profile</button>
-            </div>
-          </form>
-        </section>
-
-        <div class="calendar-shell">
-          <div class="weekday-row" aria-hidden="true">
-            <span>Sun</span>
-            <span>Mon</span>
-            <span>Tue</span>
-            <span>Wed</span>
-            <span>Thu</span>
-            <span>Fri</span>
-            <span>Sat</span>
-          </div>
-          <div
-            id="calendar-grid"
-            class="calendar-grid"
-            role="grid"
-            aria-label="Homework calendar"
-          ></div>
+        <div class="message-panel">
+          <p id="objective-display" class="objective">
+            Dive through the asteroid storm for 10 seconds.
+          </p>
+          <p id="controls-display" class="controls">
+            `A` / `D` strafe, `W` / `S` steer in space, `Space` jump, click or `Enter` to fire.
+          </p>
         </div>
+      </section>
 
-        <section class="details">
-          <div class="details-header">
-            <div>
-              <p class="eyebrow">Selected Date</p>
-              <h3 id="selected-date-label">Choose a day</h3>
-            </div>
-            <button id="today-button" type="button">Today</button>
-          </div>
-
-          <form id="assignment-form" class="assignment-form">
-            <label>
-              Title
-              <input id="title-input" name="title" type="text" maxlength="80" required />
-            </label>
-            <label>
-              Course
-              <input id="course-input" name="course" type="text" maxlength="40" />
-            </label>
-            <label>
-              Notes
-              <textarea id="notes-input" name="notes" rows="3" maxlength="200"></textarea>
-            </label>
-            <div class="form-actions">
-              <p id="active-profile-label" class="active-profile-label">Adding as</p>
-              <button type="submit">Add Assignment</button>
-            </div>
-          </form>
-
-          <div class="list-header">
-            <p class="eyebrow">Due This Day</p>
-            <button id="clear-day-button" type="button">Clear Day</button>
-          </div>
-          <ul id="assignment-list" class="assignment-list"></ul>
-        </section>
+      <section id="overlay" class="overlay">
+        <div class="overlay-card">
+          <p class="eyebrow">Fast-Paced 3D Shooter</p>
+          <h2 id="overlay-title">Drop Into The Swarm</h2>
+          <p id="overlay-copy">
+            You are launched from a space ship, survive the asteroid dive, clear the alien hallway,
+            vault the parkour gauntlet, and destroy the alien tarantula to be beamed back up.
+          </p>
+          <button id="overlay-button" type="button">Start Mission</button>
+        </div>
       </section>
     </main>
 
