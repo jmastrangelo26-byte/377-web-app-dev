@@ -1,5 +1,11 @@
 <?php
 
+/*
+This file is responsible for rendering the form for adding/editing an assignment or event.
+It also pre-populates the form with any existing data for a given task 
+an ID is provided in the URL parameters.
+*/
+
 $title = "";
 $description = "";
 $item_type = "";
@@ -53,25 +59,25 @@ else
 
 ?>
 
-<h2 class="form-label"><?php echo $title; ?></h2>
+<h2 class="form-label"><?php echo htmlspecialchars($title); ?></h2>
 
 <form action="save.php" method="POST" class="centered-form">
-    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $id; ?>">
+    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo htmlspecialchars($id); ?>">
 
-    <?php
-        // Always set completed to 'False' when editing/saving through the form
-        // Only the "Complete!" button should mark as 'True'
-        echo '<input type="hidden" class="form-control" name="completed" value="False">';
-    ?>
+<?php
+// Always set completed to 'False' when editing/saving through the form
+// Only the "Complete!" button should mark as 'True'
+echo '<input type="hidden" class="form-control" name="completed" value="False">';
+?>
     
     <div class="mb-3">
         <label for="title" class="form-label"></label>
-        <input type="text" placeholder="Name of Assignment/Event" class="form-control" name="title" id="title" value="<?php echo $title; ?>">
+        <input type="text" placeholder="Name of Assignment/Event" class="form-control" name="title" id="title" value="<?php echo htmlspecialchars($title); ?>">
     </div>
 
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" name="description" id="description"><?php echo $description; ?></textarea>
+        <textarea class="form-control" name="description" id="description"><?php echo htmlspecialchars($description); ?></textarea>
     </div>
 
     <div class="mb-3">
@@ -85,17 +91,17 @@ else
 
     <div class="mb-3">
         <label for="due_date" class="form-label">Due Date</label>
-        <input type="date" class="form-control" name="due_date" id="due_date" value="<?php echo $due_date; ?>">
+        <input type="date" class="form-control" name="due_date" id="due_date" value="<?php echo htmlspecialchars($due_date); ?>">
     </div> 
 
     <div class="mb-3">
         <label for="start_time" class="form-label">Start Time</label>
-        <input type="time" class="form-control" name="start_time" id="start_time" value="<?php echo $start_time; ?>">
+        <input type="time" class="form-control" name="start_time" id="start_time" value="<?php echo htmlspecialchars($start_time); ?>">
     </div>
 
     <div class="mb-3">
         <label for="end_time" class="form-label">End Time</label>
-        <input type="time" class="form-control" name="end_time" id="end_time" value="<?php echo $end_time; ?>">
+        <input type="time" class="form-control" name="end_time" id="end_time" value="<?php echo htmlspecialchars($end_time); ?>">
     </div> 
 
     <div class="mb-3">
@@ -109,12 +115,12 @@ else
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
-    <?php
-        if (!empty($id)) {
-            echo '<a href="complete-tasks.php?id=' . $id . '" class="btn btn-success" role="button">Complete!</a>';
-        }
-    ?>
-    <a href="delete.php?id=<?php echo $id; ?>" class="btn btn-danger" role="button">Delete</a>
+<?php
+    if (!empty($id)) {
+        echo '<a href="complete-tasks.php?id=' . htmlspecialchars($id) . '" class="btn btn-success" role="button">Complete!</a> ';
+    }
+?>
+    <a href="delete.php?id=<?php echo htmlspecialchars($id); ?>" class="btn btn-danger" role="button">Delete</a>
     <a href="index.php?content=list" class="btn btn-secondary" role="button">Cancel</a>
 </form>
 

@@ -1,6 +1,11 @@
-<?php
 
-// error_reporting(0);
+<?php   
+/*
+This file contains common functions and database connection logic that can be used 
+across multiple PHP files in the application.
+*/
+
+
 
 extract($_REQUEST);
 

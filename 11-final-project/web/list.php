@@ -1,6 +1,10 @@
-<!DOCTYPE html>
 <html>
 
+<!-- This file is responsible for rendering the main calendar view of the application. 
+It displays a calendar for a specified month and year, with buttons to navigate between months. 
+It also displays a list of upcoming events and allows users to click on specific dates to view the events for that date.
+The calendar is generated based on user input for the month and year, and it retrieves events 
+from the database to display on the calendar and in the upcoming events section. -->
 
 <script> 
     // makes a call to a page that will generate all events for a given date and renders them in a portion of the page
@@ -82,34 +86,34 @@
 
     
 <?php
-    include_once("library.php");
-    $connection = get_connection();
+include_once("library.php");
+$connection = get_connection();
 
 
-    print('<table>');
-    print('<thead>');
-    print('<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>');
-    print('</thead>');
-    print('<tbody>');
-   
-    // these next two variables retrieve user input for the date and year to load a desired calendar for the user
-    $year = isset($_POST['year']) && !empty($_POST['year']) ? intval($_POST['year']) : date('Y');    
-    $month = isset($_POST['month']) && !empty($_POST['month']) ? intval($_POST['month']) : date('m');  
+print('<table>');
+print('<thead>');
+print('<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>');
+print('</thead>');
+print('<tbody>');
 
-    $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
-    $lastDayOfMonth = intval(date('t', strtotime("$year-$month-01")));
-    $date = 1; 
-    $week = 0;
-    
-    // create a mapping of dates to events for the month so that we can easily display which days have events when we render the calendar
-    // looked up on google how to create a date object from a month number so that we can display the month name instead of just the number
-    $dateObj = DateTime::createFromFormat('!m', $month);
-    print("<h1>{$year}</h1>");
-    print("<h1><button onclick='retreatMonth($month, $year)'>&#9664;</button> {$dateObj->format('F')} <button onclick='advanceMonth($month, $year)'>&#9654;</button></h1>");
- 
-    // retrieve all the events for a month
+// these next two variables retrieve user input for the date and year to load a desired calendar for the user
+$year = isset($_POST['year']) && !empty($_POST['year']) ? intval($_POST['year']) : date('Y');    
+$month = isset($_POST['month']) && !empty($_POST['month']) ? intval($_POST['month']) : date('m');  
 
-    $map = [];
+$firstDayOfMonth = date('w', strtotime("$year-$month-01"));
+$lastDayOfMonth = intval(date('t', strtotime("$year-$month-01")));
+$date = 1; 
+$week = 0;
+
+// create a mapping of dates to events for the month so that we can easily display which days have events when we render the calendar
+// looked up on google how to create a date object from a month number so that we can display the month name instead of just the number
+$dateObj = DateTime::createFromFormat('!m', $month);
+print("<h1>{$year}</h1>");
+print("<h1><button onclick='retreatMonth($month, $year)'>&#9664;</button> {$dateObj->format('F')} <button onclick='advanceMonth($month, $year)'>&#9654;</button></h1>");
+
+// retrieve all the events for a month
+
+$map = [];
 
 $sql = <<<SQL
 SELECT *
@@ -118,67 +122,69 @@ WHERE MONTH(due_date) = $month AND YEAR(due_date) = $year
 AND completed = 'False'
 SQL;
 
-    // add all events for a single day to a mapping so that we can easily display which days have events when we render the calendar
-    $events = [];
-    $result = $connection->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        $dateKey = date('Y-m-d', strtotime($row['due_date']));
-        $map[$dateKey][] = $row;
-    }
+// add all events for a single day to a mapping so that we can easily display which days have events when we render the calendar
+$events = [];
+$result = $connection->query($sql);
+while ($row = $result->fetch_assoc()) {
+    $dateKey = date('Y-m-d', strtotime($row['due_date']));
+    $map[$dateKey][] = $row;
+}
 
-    while ($date <= $lastDayOfMonth){
-        print('<tr>');
-        for ($day = 0; $day < 7; $day++){
-            print('<td>');
-            if ($week > 0 || $day >= $firstDayOfMonth){
-                if (($week > 0 || $day >= $firstDayOfMonth) && $date <= $lastDayOfMonth){
-                    print($date);
-                    print('<br>');
-                    $dateKey = sprintf('%04d-%02d-%02d', $year, $month, $date);
+while ($date <= $lastDayOfMonth){
+    print('<tr>');
+    for ($day = 0; $day < 7; $day++){
+        print('<td>');
+        if ($week > 0 || $day >= $firstDayOfMonth){
+            if (($week > 0 || $day >= $firstDayOfMonth) && $date <= $lastDayOfMonth){
+                print($date);
+                print('<br>');
+                $dateKey = sprintf('%04d-%02d-%02d', $year, $month, $date);
 
-                    // If any events for a date, a button is displayed that allows the user to view all events
-                    if (isset($map[$dateKey])) {
-                        // pass datekey into a function that will render a separate portion of the page with all the events
-                        print("<input type='button' value='View Events' onclick='loadDateEvents(\"$dateKey\")'>");
-                    }
+                // If any events for a date, a button is displayed that allows the user to view all events
+                if (isset($map[$dateKey])) {
+                    // pass datekey into a function that will render a separate portion of the page with all the events
+                    print("<input type='button' value='View Events' onclick='loadDateEvents(\"$dateKey\")'>");
                 }
-                $date++;
             }
-            print('</td>');
+            $date++;
         }
-        print('</tr>');
-        $week++;
+        print('</td>');
     }
-    print('</tbody>');
-    print('</table>');
+    print('</tr>');
+    $week++;
+}
+print('</tbody>');
+print('</table>');
 ?>
-    </div>
+</div>
 
-        <div class="upcoming-events">
+    <div class="upcoming-events">
 <?php
-    $sql = <<<SQL
-    SELECT title, description, due_date
-    FROM planned_items
-    WHERE completed = 'False'
-    AND due_date < CURDATE()
-    OR due_date > CURDATE() AND due_date < DATE_ADD(CURDATE(), INTERVAL 7 DAY)
-    ORDER BY due_date ASC
-    SQL;
+$sql = <<<SQL
+SELECT title, description, due_date
+FROM planned_items
+WHERE completed = 'False'
+    AND (
+        due_date < CURDATE()
+        OR due_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+    )
+ORDER BY due_date ASC
+SQL;
 
-    $result = $connection->query($sql);
-    print('<h2>Upcoming Events</h2>');
-    
-    if ($result->num_rows == 0) {
-        print('<p>No upcoming events.</p>');
-    } else {
-        while ($row = $result->fetch_assoc()) {
-            if ($row['due_date'] < date('Y-m-d')) {
-                print("<p style='color: red;'>{$row['title']} - {$row['description']} - Due: {$row['due_date']}</p>");
-            } else {
-                print("<p>{$row['title']} - {$row['description']} - Due: {$row['due_date']}</p>");
-            }
+$result = $connection->query($sql);
+print('<h2>Upcoming Events</h2>');
+
+if ($result->num_rows == 0) {
+    print('<p>No upcoming events.</p>');
+} else {
+    while ($row = $result->fetch_assoc()) {
+        if ($row['due_date'] < date('Y-m-d')) {
+            print("<p style='color: red;'>{$row['title']} - {$row['description']} - Due: {$row['due_date']}</p>");
+        } else {
+            print("<p>{$row['title']} - {$row['description']} - Due: {$row['due_date']}</p>");
         }
     }
+}
 ?>
     </div>
     </div>

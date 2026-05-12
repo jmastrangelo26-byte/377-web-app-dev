@@ -1,4 +1,6 @@
 <?php
+/* This file is responsible for deleting a task when the "Delete" button is clicked */
+
 
 include_once("library.php");
 $connection = get_connection();

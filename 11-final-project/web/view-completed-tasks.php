@@ -1,4 +1,5 @@
 <?php
+/* This file is responsible for rendering the list of completed tasks. */
 
 include_once("library.php");
 $connection = get_connection();

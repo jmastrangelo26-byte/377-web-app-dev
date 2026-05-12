@@ -1,5 +1,11 @@
 <?php
 
+/*
+This file is responsible for rendering the list of events for a specific date. 
+It queries the database for all events that occur on the specified date and displays 
+them as links to their respective detail pages.
+*/
+
 // Take a specific date and return all events that occur on that date
 include_once("library.php");
 $connection = get_connection();

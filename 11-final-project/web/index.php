@@ -1,5 +1,10 @@
-<!DOCTYPE html>
 <html>
+
+<!-- This is the main entry point for the Assignment Planner web application. 
+It sets up the basic HTML structure and includes the necessary CSS and JavaScript libraries. 
+It also determines which content to display based on URL parameters and includes the appropriate 
+PHP files for rendering that content. -->
+
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -17,12 +22,12 @@
             <a href="index.php?content=view-completed-tasks" class="btn btn-secondary" role="button">View Completed Tasks</a>
         </div>
 
-        <?php
-            include_once("library.php");
-            
-            if (!isset($content)){
-                $content = "list";
-            }
-            include("$content.php");
-        ?>
+<?php
+include_once("library.php");
+
+if (!isset($content)){
+    $content = "list";
+}
+include("$content.php");
+?>
         </div>
